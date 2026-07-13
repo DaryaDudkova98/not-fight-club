@@ -1,0 +1,30 @@
+.wrapper-character {
+    display: flex;
+    gap: 3rem;
+    padding: 20px;
+}
+
+.img-charachter {
+    border-radius: 20px;
+    border: 1px solid #000000;
+    width: 300px;
+    height: 350px;
+}
+
+.wrapper-statistics {
+    display: flex;
+    gap: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.wrapper-wins {
+    color: #00a500;
+    display: flex;
+    gap: 5px;
+}
+
+.wrapper-loses {
+    color: #ce0000;
+    display: flex;
+    gap: 5px;
+}

@@ -22,6 +22,28 @@ const navItems = {
     settings: document.getElementById('settings')
 };
 
+function checkAndRedirectIfNoName() {
+    const playerName = localStorage.getItem('playerName');
+    const protectedPages = ['profile', 'settings'];
+    
+    const currentPage = Object.keys(pages).find(key => {
+        const page = document.getElementById(pages[key].id);
+        return page && !page.classList.contains('hidden');
+    });
+    
+    if (protectedPages.includes(currentPage)) {
+        if (!playerName || playerName.trim() === '') {
+            window.location.href = 'registration.html';
+            return false;
+        }
+    }
+    return true;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(checkAndRedirectIfNoName, 200);
+});
+
 function openPage(pageKey) {
     const pageConfig = pages[pageKey];
     if (!pageConfig) return;

@@ -1,5 +1,3 @@
-// pages.js - без обработчика кнопки Fight!
-
 const pages = {
     'house': {
         id: 'home-page',
@@ -36,6 +34,13 @@ function openPage(pageKey) {
         document.body.style.overflow = 'hidden';
         updateHeaderTitle(pageConfig.title);
         console.log(`Open page: ${pageConfig.title}`);
+
+        if (pageKey === 'profile') {
+            updateCharacterPage();
+        }
+        if (pageKey === 'settings') {
+            updateSettingsPage();
+        }
     }
 }
 
@@ -90,7 +95,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Открываем страницу Main по умолчанию
 document.addEventListener('DOMContentLoaded', function() {
     openPage('house');
 });

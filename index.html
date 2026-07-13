@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="fight.css">
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="style.css" />
     <title>NotFightClub</title>
@@ -18,21 +19,50 @@
         <div class="header-left"></div>
         <ul class="header-right">
           <li>
-            <a href="#"
+            <a id="house" href="#"
               ><i class="fa-solid fa-house"></i></a>
           </li>
           <li>
-            <a href="#"
+            <a id="profile" href="#"
               ><i class="fa-solid fa-circle-user"></i
               ></a>
           </li>
           <li>
-            <a href="#"
+            <a id="settings" href="#"
               ><i class="fa-solid fa-gear"></i></a>
           </li>
         </ul>
       </div>
     </header>
+
+    <div id="home-page" class="home-page page hidden">
+      <button id="fight-btn" class="fight-btn">Fight!</button>
+    </div>
+
+    <div id="character-page" class="page hidden">
+      <div class="wrapper-character">
+        <img src="img/avatars/default.jpg" alt="character">
+        <div class="wrapper-info">
+          <span class="name"></span>
+          <div class="wrapper-statistics">
+            <p class="wins">wins:</p>
+            <span class="wins-count">0</span>
+            <p class="loses">Loses:</p>
+            <span class="loses-count">0</span>
+          </div>
+        </div>
+      
+      </div>
+      
+    </div>
+
+    <div id="settings-page" class="page hidden">
+      <h3>Player Name:</h3>
+      <span class="name"></span>
+      <button>Edit</button>
+    </div>
     <script src="app.js"></script>
+    <script src="fight.js"></script>
+    <script src="pages.js"></script>
   </body>
 </html>

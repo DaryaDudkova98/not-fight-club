@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="fight.css" />
     <link rel="stylesheet" href="character-page.css" />
+    <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="settings-page.css" />
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="style.css" />
@@ -39,11 +40,18 @@
 
     <div id="character-page" class="page hidden">
       <div class="wrapper-character">
-        <img
-          class="img-charachter"
-          src="img/avatars/default.jpg"
-          alt="character"
-        />
+        <div class="avatar-wrapper" id="avatarWrapper">
+          <img
+            class="img-charachter"
+            src="img/avatars/default.jpg"
+            alt="character"
+          />
+          <div class="edit-overlay">
+            <div class="circle">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+          </div>
+        </div>
         <div class="wrapper-info">
           <span class="name"></span>
           <div class="wrapper-statistics">
@@ -60,6 +68,17 @@
       </div>
     </div>
 
+    <div class="modal-overlay" id="avatarModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalCloseBtn">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="avatar-grid" id="avatarGrid">
+          
+        </div>
+      </div>
+    </div>
+
     <div id="settings-page" class="page hidden">
       <div class="wrapper-settings">
         <h3>Player Name:</h3>
@@ -72,5 +91,6 @@
     <script src="settings-page.js"></script>
     <script src="fight.js"></script>
     <script src="pages.js"></script>
+    <script src="modal.js"></script>
   </body>
 </html>

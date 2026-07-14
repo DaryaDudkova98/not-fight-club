@@ -83,9 +83,16 @@ function closePage(pageId) {
     }
 }
 
+// ИСПРАВЛЕННЫЙ ОБРАБОТЧИК - проверяем, что клик был именно по фону страницы
 document.querySelectorAll('.page').forEach(page => {
     page.addEventListener('click', function(e) {
+        // Проверяем, что клик был именно по самому элементу .page, а не по его дочерним элементам
         if (e.target === this) {
+            // Проверяем, что мы не на странице персонажа и не на странице настроек
+            if (this.id === 'character-page' || this.id === 'settings-page') {
+                console.log(`Click on ${this.id} background - ignoring`);
+                return;
+            }
             closePage(this.id);
             const openPages = document.querySelectorAll('.page:not(.hidden)');
             if (openPages.length === 0) {
@@ -97,6 +104,16 @@ document.querySelectorAll('.page').forEach(page => {
 
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
+        // Не закрываем страницу настроек по Escape, если мы в режиме редактирования
+        const settingsPage = document.getElementById('settings-page');
+        if (settingsPage && !settingsPage.classList.contains('hidden')) {
+            const isEditing = window.isEditingName || false;
+            if (isEditing) {
+                console.log('Cannot close settings page while editing name');
+                return;
+            }
+        }
+        
         document.querySelectorAll('.page:not(.hidden)').forEach(page => {
             closePage(page.id);
         });
@@ -105,7 +122,6 @@ document.addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-
     const playerName = localStorage.getItem('playerName');
     
     if (playerName && playerName.trim() !== '') {

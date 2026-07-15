@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/icon-skull.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icon-skull.png">
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="fight.css" />
-    <link rel="stylesheet" href="character-page.css" />
-    <link rel="stylesheet" href="modal.css" />
-    <link rel="stylesheet" href="settings-page.css" />
-    <link rel="stylesheet" href="header.css" />
-    <link rel="stylesheet" href="style.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fight.css">
+    <link rel="stylesheet" href="battle.css">
+    <link rel="stylesheet" href="character-page.css">
+    <link rel="stylesheet" href="modal.css">
+    <link rel="stylesheet" href="settings-page.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="style.css">
     <title>NotFightClub</title>
   </head>
   <body>
@@ -44,8 +44,7 @@
           <img
             class="img-charachter"
             src="img/avatars/default.jpg"
-            alt="character"
-          />
+            alt="character">
           <div class="edit-overlay">
             <div class="circle">
               <i class="fas fa-pencil-alt"></i>
@@ -68,20 +67,138 @@
       </div>
     </div>
 
+    <!-- FIGHT_PAGE -->
+    <div id="battle-page" class="page hidden">
+      <div class="fight-container">
+        <div class="battle-players">
+          <div class="player-side">
+            <div class="fighter-card">
+              <h2 class="fighter-name" id="player-fighter-name">Player</h2>
+              <img
+                src="img/avatars/default.jpg"
+                alt="Player"
+                class="fighter-avatar"
+                id="player-fighter-avatar">
+              <div class="health-bar">
+                <div
+                  class="health-fill"
+                  id="player-health"
+                  style="width: 100%"
+                ></div>
+              </div>
+              <span class="health-text" id="player-health-text"
+                >150/150 HP</span
+              >
+            </div>
+          </div>
+
+          <div class="battle-zones">
+            <div class="zones-container">
+              <h1>Select Attack & Defence Zones</h1>
+              <div class="attack-defence-wrapper">
+                <div class="attack-zones">
+                  <p class="zone-hint">Attack Zone (choose 1)</p>
+                  <div class="zones-grid" id="attack-zones">
+                    <button class="zone-btn attack-zone" data-zone="head">
+                      Head
+                    </button>
+                    <button class="zone-btn attack-zone" data-zone="neck">
+                      Neck
+                    </button>
+                    <button class="zone-btn attack-zone" data-zone="body">
+                      Body
+                    </button>
+                    <button class="zone-btn attack-zone" data-zone="belly">
+                      Belly
+                    </button>
+                    <button class="zone-btn attack-zone" data-zone="legs">
+                      Legs
+                    </button>
+                  </div>
+                </div>
+
+                <div class="defence-zones">
+                  <p class="zone-hint">Defence Zones (choose 2)</p>
+                  <div class="zones-grid" id="defence-zones">
+                    <button class="zone-btn defence-zone" data-zone="head">
+                      Head
+                    </button>
+                    <button class="zone-btn defence-zone" data-zone="neck">
+                      Neck
+                    </button>
+                    <button class="zone-btn defence-zone" data-zone="body">
+                      Body
+                    </button>
+                    <button class="zone-btn defence-zone" data-zone="belly">
+                      Belly
+                    </button>
+                    <button class="zone-btn defence-zone" data-zone="legs">
+                      Legs
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="enemy-side">
+            <div class="fighter-card">
+              <h2 class="fighter-name" id="enemy-fighter-name">Enemy</h2>
+              <img
+                src="img/avatars/default.jpg"
+                alt="Enemy"
+                class="fighter-avatar"
+                id="enemy-fighter-avatar">
+
+              <div class="health-bar">
+                <div
+                  class="health-fill"
+                  id="enemy-health"
+                  style="width: 100%"
+                ></div>
+              </div>
+              <span class="health-text" id="enemy-health-text">150/150 HP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="battle-controls">
+          <button id="attack-btn" class="battle-btn attack-btn" disabled>
+            Fight!
+          </button>
+        </div>
+
+        <div class="battle-log" id="battle-log">
+          <p class="system-message">
+            Select 1 Attack zone and 2 Defence zones, then click "Attack!"
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL WINDOW FOR RESULT OF FIGHT -->
+<div id="battleResultModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content battle-result-modal">
+        <button class="modal-close-btn" id="battleResultClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <p id="battleResultMessage">You won!</p>
+    </div>
+</div>
+
+    <!-- MODAL WINDOW -->
     <div class="modal-overlay" id="avatarModal">
       <div class="modal-content">
         <button class="modal-close" id="modalCloseBtn">
           <i class="fas fa-times"></i>
         </button>
-        <div class="avatar-grid" id="avatarGrid">
-          
-        </div>
+        <div class="avatar-grid" id="avatarGrid"></div>
       </div>
     </div>
 
     <div id="settings-page" class="page hidden">
       <div class="wrapper-settings">
-        <h3>Player Name:</h3>
+        <h2>Player Name:</h2>
         <span class="name"></span>
         <button class="btn-settings">Edit</button>
       </div>
@@ -89,7 +206,7 @@
     <script src="app.js"></script>
     <script src="character-page.js"></script>
     <script src="settings-page.js"></script>
-    <script src="fight.js"></script>
+    <script src="battle.js"></script>
     <script src="pages.js"></script>
     <script src="modal.js"></script>
   </body>

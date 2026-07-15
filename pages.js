@@ -13,6 +13,11 @@ const pages = {
         id: 'settings-page',
         title: 'Settings',
         icon: 'fa-gear'
+    },
+    'battle': {
+        id: 'battle-page',
+        title: 'Battle',
+        icon: 'fa-sword'
     }
 };
 
@@ -27,7 +32,7 @@ function openPage(pageKey) {
     if (!pageConfig) return;
     
     // Проверяем имя для защищённых страниц
-    if (pageKey === 'profile' || pageKey === 'settings') {
+    if (pageKey === 'profile' || pageKey === 'settings' || pageKey === 'battle') {
         const playerName = localStorage.getItem('playerName');
         if (!playerName || playerName.trim() === '') {
             window.location.href = 'registration.html';
@@ -45,10 +50,21 @@ function openPage(pageKey) {
         console.log(`Open page: ${pageConfig.title}`);
 
         if (pageKey === 'profile') {
-            updateCharacterPage();
+            if (typeof updateCharacterPage === 'function') {
+                updateCharacterPage();
+            }
         }
         if (pageKey === 'settings') {
-            updateSettingsPage();
+            if (typeof updateSettingsPage === 'function') {
+                updateSettingsPage();
+            }
+        }
+        if (pageKey === 'battle') {
+            if (typeof initBattle === 'function') {
+                initBattle();
+            } else {
+                console.error('initBattle function not found!');
+            }
         }
     }
 }
@@ -83,13 +99,11 @@ function closePage(pageId) {
     }
 }
 
-// ИСПРАВЛЕННЫЙ ОБРАБОТЧИК - проверяем, что клик был именно по фону страницы
+// Обработчик клика по фону страницы
 document.querySelectorAll('.page').forEach(page => {
     page.addEventListener('click', function(e) {
-        // Проверяем, что клик был именно по самому элементу .page, а не по его дочерним элементам
         if (e.target === this) {
-            // Проверяем, что мы не на странице персонажа и не на странице настроек
-            if (this.id === 'character-page' || this.id === 'settings-page') {
+            if (this.id === 'character-page' || this.id === 'settings-page' || this.id === 'battle-page') {
                 console.log(`Click on ${this.id} background - ignoring`);
                 return;
             }
@@ -104,7 +118,6 @@ document.querySelectorAll('.page').forEach(page => {
 
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-        // Не закрываем страницу настроек по Escape, если мы в режиме редактирования
         const settingsPage = document.getElementById('settings-page');
         if (settingsPage && !settingsPage.classList.contains('hidden')) {
             const isEditing = window.isEditingName || false;

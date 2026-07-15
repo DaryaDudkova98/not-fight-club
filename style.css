@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.page {
+    display: flex;
+}
+
+.page.hidden {
+    display: none !important;
+}

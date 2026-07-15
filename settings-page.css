@@ -1,0 +1,19 @@
+.wrapper-settings {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.wrapper-settings h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
+}
+
+.btn-settings {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    border: 1px solid #000000;
+    outline: none;
+}

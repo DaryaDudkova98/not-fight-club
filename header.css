@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding: 10px 20px;
+}
+
+ul {
+    display: flex;
+    width: 80px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+ul li {
+    list-style-type: none;
+    margin: 0 auto;
+}
+
+ul li:last-child {
+    margin-right: 0;
+}
+
+.fa-solid {
+    width: 20px;
+    height: 20px;
+    color: black;
+}
+
